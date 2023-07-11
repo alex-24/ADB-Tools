@@ -1,0 +1,96 @@
+Find package name of running app:
+  > adb shell top
+
+Install app:
+  > adb install <path to .apk or .aar>
+  > adb shell install <path to .apk or .aar>
+  > adb shell pm install <path to .apk or .aar>
+
+Uninstall app:
+  > adb uninstall <package name>
+  > adb shell pm uninstall <package name>
+  > adb shell pm uninstall --user 0 <package name>
+
+Force stop app:
+  > adb shell am force-stop <package name>
+
+Clear app data:
+  > adb shell pm clear <package name>
+
+Start screen saver:
+  > adb shell am start -n "com.android.systemui/.Somnambulator"
+
+Turn screen on:
+  > adb -d  shell am broadcast -a android.intent.action.SCREEN_ON
+
+Turn screen off:
+  > adb -d  shell am broadcast -a android.intent.action.SCREEN_OFF
+
+Force scheduled job to run immediately:
+  > adb shell cmd jobscheduler run <package name> <job id>
+
+Open general settings:
+  > adb shell am start -a com.android.settings.SETTINGS
+
+Open developper settings:
+  > adb shell am start -a com.android.settings.APPLICATION_DEVELOPMENT_SETTINGS
+
+Simulate keyevent:
+  > adb shell input keyevent <kecode or keycode name>
+
+Simulate text input:
+  > adb shell input text <text>
+
+List all services:
+  > adb shell dumpsys activity services
+
+List all services containing "myservice" in its name
+  > adb shell dumpsys activity services myservice
+
+Open deeplink:
+  > adb shell am start -a android.intent.action.VIEW -d <deeplink>
+
+Rebooting:
+  > adb reboot
+  > adb reboot quiescent
+  > adb reboot recovery
+  > adb reboot fastboot
+
+Fetch file from device:
+  > adb pull <path on device> <destination path>
+
+Fetch android TV TIF database:
+  // sqlite3 /data/data/com.android.providers.tv/databases/tv.db
+  > adb pull "sqlite3 /data/data/com.android.providers.tv/databases/tv.db" .
+
+Take screenshot:
+  > adb shell screencap -p /sdcard/<file_name.png> && adb pull /sdcard/<file_name.png>
+
+Record screen:
+  > adb shell screenrecord -p /sdcard/<file_name.mp4>
+  > adb pull /sdcard/<file_name.mp4>
+
+disable chatty:
+  > adb logcat -P ""
+
+View chatty filters:
+  > adb logcat -p
+
+Fully clear logcat buffers:
+  > adb logcat -b all -c && adb logcat -c
+
+Restart adb as root:
+  > adb root
+  > adb remound
+
+View all device properties:
+  > adb shell getprop
+
+Disable wifi:
+  > adb shell "svc wifi enable"
+
+Enable firebase debug view for device and app:
+  > adb shell setprop debug.firebase.analytics.app <package name>
+
+Disable firebase debug view for device and app:
+  > adb shell setprop debug.firebase.analytics.app .none.
